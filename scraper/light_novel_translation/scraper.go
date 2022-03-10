@@ -101,7 +101,7 @@ func (lntscraper LNTScraper) fetchSite(ctx context.Context, url string) (doc *go
 
 	logCtx["status_code"] = res.StatusCode
 	if res.StatusCode >= 400 {
-		msg := "unexpected error code from server"
+		msg := "unexpected status code from server"
 		return nil, scraper.NewScrapeError(site, msg, errors.New(msg), logCtx)
 	}
 
