@@ -24,10 +24,10 @@ type LNTScraper struct {
 func (lntscraper *LNTScraper) Scrape(ctx context.Context, url string) <-chan scraper.ScrapeData {
 	c := make(chan scraper.ScrapeData, lntscraper.bufferSize)
 
-	lntscraper.wg.Add(1)
 	go func() {
+		// no need for lint because the consumer will wait until the channel is closed.
+		lntscraper.wg.Add(1) //nolint:staticcheck
 		lntscraper.scrapeSite(ctx, url, 0, c)
-		lntscraper.wg.Done()
 		lntscraper.wg.Wait()
 		close(c)
 	}()

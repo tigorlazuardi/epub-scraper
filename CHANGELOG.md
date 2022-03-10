@@ -4,6 +4,9 @@
 ### Docs
 - **changelog:** added changelog
 
+### Fix
+- **light-novel-translation:** fix potential panic on wrong Done() counter
+
 
 <a name="v0.1.0"></a>
 ## v0.1.0 - 2022-03-10
