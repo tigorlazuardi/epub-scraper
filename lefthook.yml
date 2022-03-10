@@ -1,0 +1,34 @@
+pre-commit:
+    parallel: true
+    commands:
+        lint_and_format:
+            glob: '*.{go}'
+            run: golangci-lint run && git add {staged_files}
+        generate-mocks:
+            glob: '*.{go}'
+            run: echo {staged_files} >/dev/null && mockery --all --keeptree && git add mocks/*
+commit-msg:
+    parallel: true
+    commands:
+        commitlint:
+            run: bash commitlint.sh {1}
+            skip:
+                - merge
+                - rebase
+        test:
+            glob: '*.{go}'
+            run: echo {staged_files} >/dev/null && go test -v ./...
+post-commit:
+    commands:
+        changelog:
+            run: lefthook run changelog
+
+changelog:
+    piped: true
+    commands:
+        1_create:
+            run: git-chglog -o CHANGELOG.md
+        2_add:
+            run: LEFTHOOK=0 git add CHANGELOG.md
+        3_commit:
+            run: LEFTHOOK=0 git commit --amend --no-edit
