@@ -2,9 +2,11 @@ package scraper
 
 import (
 	"context"
+	"encoding/json"
 	"net/http"
 
 	"github.com/PuerkitoBio/goquery"
+	"github.com/tigorlazuardi/epub-scraper/unsafeutils"
 )
 
 type Doer interface {
@@ -18,11 +20,34 @@ type ScrapeError struct {
 	Scraper string
 }
 
+func (scrapeerror *ScrapeError) MarshalJSON() ([]byte, error) {
+	m := map[string]interface{}{
+		"message": scrapeerror.Message,
+		"context": scrapeerror.Context,
+		"scraper": scrapeerror.Scraper,
+	}
+
+	if e, errMarshal := json.Marshal(scrapeerror.Err); errMarshal == nil {
+		if unsafeutils.GetString(e) == "{}" {
+			m["error"] = scrapeerror.Err.Error()
+		} else {
+			m["error"] = json.RawMessage(e)
+		}
+	} else {
+		m["error"] = scrapeerror.Err.Error()
+	}
+
+	return json.Marshal(m)
+}
+
 func (err ScrapeError) Error() string {
 	return "[" + err.Scraper + "] " + err.Message + ": " + err.Err.Error()
 }
 
 func NewScrapeError(scraper, message string, err error, context map[string]interface{}) error {
+	if err == nil {
+		panic("scrapeerror: wrapped error must not be nil")
+	}
 	return ScrapeError{
 		Err:     err,
 		Message: message,
