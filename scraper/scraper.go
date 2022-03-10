@@ -19,7 +19,7 @@ type ScrapeError struct {
 }
 
 func (err ScrapeError) Error() string {
-	return "[" + err.Scraper + "] " + err.Message + ": " + err.Error()
+	return "[" + err.Scraper + "] " + err.Message + ": " + err.Err.Error()
 }
 
 func NewScrapeError(scraper, message string, err error, context map[string]interface{}) error {
