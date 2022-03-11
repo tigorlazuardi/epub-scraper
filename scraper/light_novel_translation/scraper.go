@@ -15,14 +15,14 @@ var _ scraper.Scraper = (*LNTScraper)(nil)
 const site = "Light Novel Translation"
 
 type LNTScraper struct {
-	bufferSize int
-	client     scraper.Doer
-	wg         *sync.WaitGroup
-	semaphore  chan struct{}
+	queueSize int
+	client    scraper.Doer
+	wg        *sync.WaitGroup
+	semaphore chan struct{}
 }
 
 func (lntscraper *LNTScraper) Scrape(ctx context.Context, url string) <-chan scraper.ScrapeData {
-	c := make(chan scraper.ScrapeData, lntscraper.bufferSize)
+	c := make(chan scraper.ScrapeData, lntscraper.queueSize)
 
 	go func() {
 		// no need for lint because the consumer will wait until the channel is closed.
@@ -35,6 +35,11 @@ func (lntscraper *LNTScraper) Scrape(ctx context.Context, url string) <-chan scr
 	return c
 }
 
+/*
+get the final product from current site.
+
+waitgroup must be added one point before calling this because this will call done on end.
+*/
 func (lntscraper LNTScraper) scrapeSite(ctx context.Context, url string, index int, channel chan<- scraper.ScrapeData) {
 	const selector = "div.entry-content"
 	lntscraper.semaphore <- struct{}{}

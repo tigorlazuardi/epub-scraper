@@ -6,12 +6,15 @@ import (
 	"net/http"
 
 	"github.com/PuerkitoBio/goquery"
+	"github.com/tigorlazuardi/epub-scraper/pkg"
 	"github.com/tigorlazuardi/epub-scraper/unsafeutils"
 )
 
 type Doer interface {
 	Do(*http.Request) (*http.Response, error)
 }
+
+var _ pkg.Display = (*ScrapeError)(nil)
 
 type ScrapeError struct {
 	Err     error
@@ -42,6 +45,31 @@ func (scrapeerror *ScrapeError) MarshalJSON() ([]byte, error) {
 
 func (err ScrapeError) Error() string {
 	return "[" + err.Scraper + "] " + err.Message + ": " + err.Err.Error()
+}
+
+func (scrape ScrapeError) Display() []byte {
+	const indent = "    "
+	errBytes, err := json.MarshalIndent(scrape.Err, "", indent)
+	if err != nil {
+		errBytes = unsafeutils.GetBytes(scrape.Error())
+	}
+	v := make(map[string]interface{}, 4)
+
+	v["error"] = json.RawMessage(errBytes)
+	v["message"] = scrape.Message
+	v["scraper"] = scrape.Scraper
+
+	logCtx := make(map[string]interface{}, len(scrape.Context))
+	for key, val := range scrape.Context {
+		if display, ok := val.(pkg.Display); ok {
+			logCtx[key] = json.RawMessage(display.Display())
+		} else {
+			logCtx[key] = val
+		}
+	}
+
+	b, _ := json.MarshalIndent(v, "", indent)
+	return b
 }
 
 func NewScrapeError(scraper, message string, err error, context map[string]interface{}) error {
