@@ -1,6 +1,9 @@
 <a name="unreleased"></a>
 ## [Unreleased]
 
+### Chore
+- better error message grammar
+
 ### Docs
 - **changelog:** added changelog
 

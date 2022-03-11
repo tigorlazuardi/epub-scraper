@@ -23,9 +23,9 @@ func main() {
 	err := cli.Execute(ctx)
 	if err != nil {
 		if e, ok := err.(pkg.Display); ok { //nolint
-			logger.Error("failed to execute command", "error", json.RawMessage(e.Display()))
+			logger.Error("command error", "error", json.RawMessage(e.Display()))
 		} else {
-			logger.Error("failed to execute command", "error", err)
+			logger.Error("command error", "error", err)
 		}
 		os.Exit(1)
 	}
