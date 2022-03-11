@@ -2,6 +2,7 @@
 ## [Unreleased]
 
 ### Chore
+- simplified logging package
 - better error message grammar
 
 ### Docs
