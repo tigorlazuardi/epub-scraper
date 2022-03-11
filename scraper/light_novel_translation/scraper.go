@@ -41,25 +41,29 @@ get the final product from current site.
 waitgroup must be added one point before calling this because this will call done on end.
 */
 func (lntscraper LNTScraper) scrapeSite(ctx context.Context, url string, index int, channel chan<- scraper.ScrapeData) {
-	const selector = "div.entry-content"
+	const contentSelector = "div.entry-content"
+	const titleSelector = "h1.entry-title"
 	lntscraper.semaphore <- struct{}{}
 	defer lntscraper.wg.Done()
 	var err error
 	defer func() {
 		<-lntscraper.semaphore
 		if err != nil {
-			channel <- scraper.ScrapeData{Err: err}
+			channel <- scraper.ScrapeData{Err: err, URL: url, Index: index}
 		}
 	}()
 
 	logCtx := map[string]interface{}{
-		"url":      url,
-		"index":    index,
-		"selector": selector,
+		"url":              url,
+		"index":            index,
+		"content-selector": contentSelector,
+		"title-selector":   titleSelector,
 	}
 
 	doc, err := lntscraper.fetchSite(ctx, url)
 	if err != nil {
+		msg := "failed to get site data"
+		err = scraper.NewScrapeError(site, msg, err, logCtx)
 		return
 	}
 
@@ -68,14 +72,28 @@ func (lntscraper LNTScraper) scrapeSite(ctx context.Context, url string, index i
 		go lntscraper.scrapeSite(ctx, next, index+1, channel)
 	}
 
-	content := doc.Find(selector).Nodes
-	if len(content) == 0 {
+	content := doc.Find(contentSelector)
+	nodes := content.Nodes
+	if len(nodes) > 4 {
+		nodes = nodes[4:]
+	}
+	if len(nodes)-5 <= 0 {
 		msg := "current site does not have content"
 		err = scraper.NewScrapeError(site, msg, errors.New(msg), logCtx)
 		return
 	}
+	nodes = nodes[:len(nodes)-5]
 
-	// TODO: Implement further
+	data := scraper.ScrapeData{
+		URL:   url,
+		Index: index,
+		Data:  nodes,
+	}
+
+	if title := doc.Find(titleSelector).First(); title != nil {
+		data.Title = title.Text()
+	}
+	channel <- data
 }
 
 func (LNTScraper) findNext(doc *goquery.Document) (url string) {

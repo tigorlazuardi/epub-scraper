@@ -6,6 +6,7 @@
 
 ### Feat
 - **init:** skeleton mappings
+- **light-novel-translation:** implemented scraper
 - **scraper:** wip for light novel translation
 - **scraper:** added marshal json to scrape error
 - **scraper:** skeleton update

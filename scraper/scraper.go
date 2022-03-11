@@ -5,9 +5,9 @@ import (
 	"encoding/json"
 	"net/http"
 
-	"github.com/PuerkitoBio/goquery"
 	"github.com/tigorlazuardi/epub-scraper/pkg"
 	"github.com/tigorlazuardi/epub-scraper/unsafeutils"
+	"golang.org/x/net/html"
 )
 
 type Doer interface {
@@ -88,7 +88,7 @@ type ScrapeData struct {
 	Index int
 	URL   string
 	Title string
-	Data  *goquery.Selection
+	Data  []*html.Node
 	Err   error
 }
 

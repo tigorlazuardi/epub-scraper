@@ -2,11 +2,13 @@ package main
 
 import (
 	"context"
+	"encoding/json"
 	"os"
 	"os/signal"
 
 	"github.com/tigorlazuardi/epub-scraper/cli"
 	"github.com/tigorlazuardi/epub-scraper/logger"
+	"github.com/tigorlazuardi/epub-scraper/pkg"
 )
 
 func main() {
@@ -20,7 +22,11 @@ func main() {
 	}()
 	err := cli.Execute(ctx)
 	if err != nil {
-		logger.Error("failed to execute command", "error", err)
+		if e, ok := err.(pkg.Display); ok { //nolint
+			logger.Error("failed to execute command", "error", json.RawMessage(e.Display()))
+		} else {
+			logger.Error("failed to execute command", "error", err)
+		}
 		os.Exit(1)
 	}
 	os.Exit(0)

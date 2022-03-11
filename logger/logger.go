@@ -20,8 +20,8 @@ var (
 )
 
 func init() {
-	info.SetHandler(log15.StreamHandler(os.Stdout, log15.LogfmtFormat()))
-	error.SetHandler(log15.StreamHandler(os.Stderr, log15.LogfmtFormat()))
+	info.SetHandler(log15.StreamHandler(os.Stdout, log15.JsonFormat()))
+	error.SetHandler(log15.StreamHandler(os.Stderr, log15.JsonFormat()))
 	warn.SetHandler(log15.DiscardHandler())
-	panic.SetHandler(log15.StreamHandler(os.Stderr, log15.LogfmtFormat()))
+	panic.SetHandler(log15.StreamHandler(os.Stderr, log15.JsonFormat()))
 }
