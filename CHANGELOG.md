@@ -7,6 +7,7 @@
 
 > Docs
 - **changelog:** added changelog
+- **readme:** added table of contents heading
 - **readme:** various readme update
 
 > Feat
