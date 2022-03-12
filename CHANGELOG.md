@@ -14,6 +14,7 @@
 > Feat
 - **lefthook:** fix markdown-pp not running
 - **light-novel-translation:** implemented scraper
+- **prepare.sh:** added prepare.sh
 - **scraper:** update logger infor
 - **scraper:** added generic scraper generator
 - **scraper:** added generic scraper
