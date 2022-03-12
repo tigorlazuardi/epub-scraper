@@ -10,6 +10,7 @@
 - **readme:** various readme update
 
 > Feat
+- **lefthook:** fix markdown-pp not running
 - **light-novel-translation:** implemented scraper
 - **scraper:** update logger infor
 - **scraper:** added generic scraper generator

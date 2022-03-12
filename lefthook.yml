@@ -23,8 +23,7 @@ post-commit:
         changelog:
             run: lefthook run changelog
         markdown-pp:
-            glob: '*.{mdpp}'
-            run: echo {staged_files} >/dev/null && lefthook run markdown-pp
+            run: lefthook run markdown-pp
 
 changelog:
     piped: true

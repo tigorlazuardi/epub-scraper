@@ -32,8 +32,10 @@ This program is intended for my personal use. The developer may receive issue no
 
 > Docs
 - **changelog:** added changelog
+- **readme:** various readme update
 
 > Feat
+- **lefthook:** fix markdown-pp not running
 - **light-novel-translation:** implemented scraper
 - **scraper:** update logger infor
 - **scraper:** added generic scraper generator
