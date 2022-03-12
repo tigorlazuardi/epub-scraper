@@ -9,6 +9,7 @@
 - **changelog:** added changelog
 - **readme:** added table of contents heading
 - **readme:** various readme update
+- **toc:** removed ugly line dividers
 
 > Feat
 - **lefthook:** fix markdown-pp not running

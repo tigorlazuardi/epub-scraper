@@ -2,14 +2,10 @@
 
 Epub Scraper is a tool to scrape websites by it's content and make them into epubs. It uses a domain specific configuration and query selector to search and scrape for those spcific content.
 
----
-
 ## Table of Contents
 
 1\.  [Disclaimer](#disclaimer)  
 2\.  [CHANGELOG](#changelog)  
-
----
 
 <a name="disclaimer"></a>
 
@@ -18,8 +14,6 @@ Epub Scraper is a tool to scrape websites by it's content and make them into epu
 This program is given as is. Any problem caused by the user for the usage of this software (be it directly or indirectly, legal issue or non-legal issue) is not the developer's fault.
 
 This program is intended for my personal use. The developer may receive issue notice, but will not promise nor will affirm to fix those issue.
-
----
 
 <a name="changelog"></a>
 
@@ -36,6 +30,7 @@ This program is intended for my personal use. The developer may receive issue no
 - **changelog:** added changelog
 - **readme:** added table of contents heading
 - **readme:** various readme update
+- **toc:** removed ugly line dividers
 
 > Feat
 - **lefthook:** fix markdown-pp not running
