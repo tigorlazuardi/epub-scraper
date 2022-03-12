@@ -1,27 +1,28 @@
 <a name="unreleased"></a>
-## [Unreleased]
+> [Unreleased]
 
-### Chore
+> Chore
 - simplified logging package
 - better error message grammar
 
-### Docs
+> Docs
 - **changelog:** added changelog
+- **readme:** various readme update
 
-### Feat
+> Feat
 - **light-novel-translation:** implemented scraper
 - **scraper:** update logger infor
 - **scraper:** added generic scraper generator
 - **scraper:** added generic scraper
 - **scraper-error:** implement display
 
-### Fix
+> Fix
 - **light-novel-translation:** fix potential panic on wrong Done() counter
 
 
 <a name="v0.1.0"></a>
-## v0.1.0 - 2022-03-10
-### Feat
+> v0.1.0 - 2022-03-10
+> Feat
 - **init:** skeleton mappings
 - **scraper:** wip for light novel translation
 - **scraper:** added marshal json to scrape error
@@ -29,7 +30,7 @@
 - **skeleton:** update skeleton
 - **unsafe:** added unsafe utilities
 
-### Fix
+> Fix
 - **light-novel-translation:** better error message for status code
 - **scraper:** fix stack overflow on ScrapeError struct
 
