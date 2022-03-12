@@ -4,6 +4,7 @@ import (
 	"context"
 	"errors"
 	"net/http"
+	"runtime"
 	"sync"
 
 	"github.com/PuerkitoBio/goquery"
@@ -24,6 +25,40 @@ type GenericScraper struct {
 	startIndex int
 	// 1 Based index digit.
 	endIndexReducer int
+}
+
+type ScraperOption struct {
+	Domain          string
+	ContentSelector string
+	TitleSelector   string
+	NextSelector    string
+	// 1 Based index digit.
+	StartIndex int
+	// 1 Based index digit.
+	EndIndexReducer int
+	Threads         int
+	Client          Doer
+}
+
+func NewGenericScraper(opts *ScraperOption) *GenericScraper {
+	if opts.Threads == 0 {
+		opts.Threads = runtime.NumCPU()
+	}
+	if opts.Client == nil {
+		opts.Client = http.DefaultClient
+	}
+	return &GenericScraper{
+		queueSize:       opts.Threads,
+		client:          opts.Client,
+		wg:              &sync.WaitGroup{},
+		semaphore:       make(chan struct{}, opts.Threads),
+		domain:          opts.Domain,
+		contentSelector: opts.ContentSelector,
+		titleSelector:   opts.TitleSelector,
+		nextSelector:    opts.NextSelector,
+		startIndex:      opts.StartIndex,
+		endIndexReducer: opts.EndIndexReducer,
+	}
 }
 
 func (generic *GenericScraper) Scrape(ctx context.Context, url string) <-chan ScrapeData {
@@ -81,7 +116,7 @@ func (generic GenericScraper) scrapeSite(ctx context.Context, url string, index 
 	content := doc.Find(generic.contentSelector)
 	nodes := content.Nodes
 	if len(nodes) > generic.startIndex {
-		nodes = nodes[generic.startIndex:]
+		nodes = nodes[generic.startIndex-1:]
 	}
 	if len(nodes)-generic.endIndexReducer <= 0 {
 		msg := "current site does not have content"

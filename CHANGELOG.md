@@ -10,6 +10,7 @@
 
 ### Feat
 - **light-novel-translation:** implemented scraper
+- **scraper:** added generic scraper generator
 - **scraper:** added generic scraper
 - **scraper-error:** implement display
 
