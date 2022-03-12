@@ -101,6 +101,7 @@ func (generic GenericScraper) scrapeSite(ctx context.Context, url string, index 
 		"end-index-reducer": generic.endIndexReducer,
 	}
 
+	logger.Info("scraping data", logCtx)
 	doc, err := generic.fetchSite(ctx, url)
 	if err != nil {
 		msg := "failed to get site data"
@@ -137,7 +138,7 @@ func (generic GenericScraper) scrapeSite(ctx context.Context, url string, index 
 	}
 
 	logCtx["scrape-data"] = data
-	logger.Info("scrape-data-info", "data", logCtx)
+	logger.Debug("scrape-data-info", "data", logCtx)
 	channel <- data
 }
 
