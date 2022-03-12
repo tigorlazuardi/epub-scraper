@@ -7,6 +7,7 @@
 
 > Docs
 - **changelog:** added changelog
+- **readme:** better toc
 - **readme:** added table of contents heading
 - **readme:** various readme update
 - **toc:** removed ugly line dividers

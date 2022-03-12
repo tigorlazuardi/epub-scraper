@@ -5,7 +5,7 @@ Epub Scraper is a tool to scrape websites by it's content and make them into epu
 ## Table of Contents
 
 1\.  [Disclaimer](#disclaimer)  
-2\.  [CHANGELOG](#changelog)  
+2\.  [Changelog](#changelog)  
 
 <a name="disclaimer"></a>
 
@@ -17,7 +17,7 @@ This program is intended for my personal use. The developer may receive issue no
 
 <a name="changelog"></a>
 
-## 2\. CHANGELOG
+## 2\. Changelog
 
 <a name="unreleased"></a>
 > [Unreleased]
@@ -28,6 +28,7 @@ This program is intended for my personal use. The developer may receive issue no
 
 > Docs
 - **changelog:** added changelog
+- **readme:** better toc
 - **readme:** added table of contents heading
 - **readme:** various readme update
 - **toc:** removed ugly line dividers
