@@ -1,13 +1,15 @@
 <a name="unreleased"></a>
-> [Unreleased]
+### [Unreleased]
 
 > Docs
+- update template mapping
 - update template mapping
 - update readme.md
 
 
 <a name="v0.1.1"></a>
-> [v0.1.1] - 2022-03-13
+### [v0.1.1] - 2022-03-13
+
 > Bug Fixes
 - **light-novel-translation:** fix potential panic on wrong Done() counter
 
@@ -36,7 +38,8 @@
 
 
 <a name="v0.1.0"></a>
-> v0.1.0 - 2022-03-10
+### v0.1.0 - 2022-03-10
+
 > Bug Fixes
 - **light-novel-translation:** better error message for status code
 - **scraper:** fix stack overflow on ScrapeError struct

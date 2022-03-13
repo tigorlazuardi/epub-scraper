@@ -6,6 +6,9 @@ Epub Scraper is a tool to scrape websites by it's content and make them into epu
 
 1\.  [Disclaimer](#disclaimer)  
 2\.  [Changelog](#changelog)  
+2.1\.  [[Unreleased]](#[unreleased])  
+2.2\.  [[v0.1.1] - 2022-03-13](#[v0.1.1]-2022-03-13)  
+2.3\.  [v0.1.0 - 2022-03-10](#v0.1.0-2022-03-10)  
 
 <a name="disclaimer"></a>
 
@@ -20,15 +23,21 @@ This program is intended for my personal use. The developer may receive issue no
 ## 2\. Changelog
 
 <a name="unreleased"></a>
-> [Unreleased]
+<a name="[unreleased]"></a>
+
+### 2.1\. [Unreleased]
 
 > Docs
+- update template mapping
 - update template mapping
 - update readme.md
 
 
 <a name="v0.1.1"></a>
-> [v0.1.1] - 2022-03-13
+<a name="[v0.1.1]-2022-03-13"></a>
+
+### 2.2\. [v0.1.1] - 2022-03-13
+
 > Bug Fixes
 - **light-novel-translation:** fix potential panic on wrong Done() counter
 
@@ -57,7 +66,10 @@ This program is intended for my personal use. The developer may receive issue no
 
 
 <a name="v0.1.0"></a>
-> v0.1.0 - 2022-03-10
+<a name="v0.1.0-2022-03-10"></a>
+
+### 2.3\. v0.1.0 - 2022-03-10
+
 > Bug Fixes
 - **light-novel-translation:** better error message for status code
 - **scraper:** fix stack overflow on ScrapeError struct
