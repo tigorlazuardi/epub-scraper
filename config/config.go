@@ -42,7 +42,7 @@ func (cfg *DomainConfiguration) UpdateFromOther(other *DomainConfiguration) {
 	}
 }
 
-type Domains map[string]DomainConfiguration
+type Domains map[string]*DomainConfiguration
 
 // Create new config.
 func NewDefaultConfig() *Config {
@@ -66,5 +66,5 @@ func (c Config) GetDomainConfig(uri string) (cfg *DomainConfiguration, err error
 		msg, err := logger.NewError("website does not exist in configuration")
 		return nil, NewConfigError(msg, err, logger.M{"web_domain": u.Hostname(), "url": uri})
 	}
-	return &x, nil
+	return x, nil
 }

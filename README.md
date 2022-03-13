@@ -14,6 +14,7 @@ This program is intended for my personal use. The developer may receive issue no
 ### [Unreleased]
 
 > Bug Fixes
+- **ConfigError:** fix missing calling Display interface on possible fields
 - **logger:** fix overriden builtin types
 
 > Code Refactoring

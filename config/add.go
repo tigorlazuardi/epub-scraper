@@ -18,5 +18,16 @@ func (c *Config) AddConfig(uri string, cfg *DomainConfiguration) (err error) {
 
 	_ = host
 
+	c.Domain[host] = cfg
+
+	err = Write(c, GetFileName())
+	if err != nil {
+		return NewConfigError("failed to save config to file when adding new domain", err, logger.M{
+			"url":    uri,
+			"domain": host,
+			"config": cfg,
+		})
+	}
+
 	return
 }

@@ -2,6 +2,7 @@
 ### [Unreleased]
 
 > Bug Fixes
+- **ConfigError:** fix missing calling Display interface on possible fields
 - **logger:** fix overriden builtin types
 
 > Code Refactoring

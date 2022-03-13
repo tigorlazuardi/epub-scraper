@@ -31,8 +31,10 @@ func (config ConfigError) Display() json.RawMessage {
 		"error":   config.Err,
 	}
 
-	if errBytes, err := json.Marshal(config.Err); err != nil || unsafeutils.GetString(errBytes) == "{}" {
-		m["error"] = err.Error()
+	if display, ok := config.Err.(logger.Display); ok { //nolint
+		m["error"] = display.Display()
+	} else if errBytes, err := json.Marshal(config.Err); err != nil || unsafeutils.GetString(errBytes) == "{}" {
+		m["error"] = config.Err.Error()
 	}
 
 	for k, v := range config.Context {
