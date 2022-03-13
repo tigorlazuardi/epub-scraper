@@ -12,6 +12,8 @@ type Display interface {
 	Display() json.RawMessage
 }
 
+type M = map[string]interface{}
+
 var (
 	infoLogger  = log.New("level", "info")
 	warnLogger  = log.New("level", "warn")

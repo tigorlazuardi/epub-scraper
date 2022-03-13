@@ -6,6 +6,7 @@ import (
 	"io/fs"
 	"os"
 
+	"github.com/tigorlazuardi/epub-scraper/logger"
 	"gopkg.in/yaml.v3"
 )
 
@@ -18,7 +19,7 @@ func Write(cfg *Config, path string) error {
 		file, err = os.Open(path)
 	}
 	if err != nil {
-		return err
+		return NewConfigError("failed to open/create config file", err, logger.M{"path": path})
 	}
 	defer file.Close()
 	return newEncoder(file).Encode(cfg)

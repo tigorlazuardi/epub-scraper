@@ -25,6 +25,9 @@ This program is intended for my personal use. The developer may receive issue no
 - update template mapping
 - update readme.md
 
+> Features
+- **config:** added error wrapper for better information
+
 
 <a name="v0.1.1"></a>
 ### [v0.1.1] - 2022-03-13

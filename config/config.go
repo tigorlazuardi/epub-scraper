@@ -16,6 +16,7 @@ type DomainConfiguration struct {
 
 type Domains map[string]DomainConfiguration
 
+// Create new config.
 func NewDefaultConfig() *Config {
 	return &Config{
 		Threads: 4,
