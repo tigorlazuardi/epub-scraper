@@ -2,41 +2,26 @@
 
 Epub Scraper is a tool to scrape websites by it's content and make them into epubs. It uses a domain specific configuration and query selector to search and scrape for those spcific content.
 
-## Table of Contents
-
-1\.  [Disclaimer](#disclaimer)  
-2\.  [Changelog](#changelog)  
-2.1\.  [[Unreleased]](#[unreleased])  
-2.2\.  [[v0.1.1] - 2022-03-13](#[v0.1.1]-2022-03-13)  
-2.3\.  [v0.1.0 - 2022-03-10](#v0.1.0-2022-03-10)  
-
-<a name="disclaimer"></a>
-
-## 1\. Disclaimer
+## Disclaimer
 
 This program is given as is. Any problem caused by the user for the usage of this software (be it directly or indirectly, legal issue or non-legal issue) is not the developer's fault.
 
 This program is intended for my personal use. The developer may receive issue notice, but will not promise nor will affirm to fix those issue.
 
-<a name="changelog"></a>
-
-## 2\. Changelog
+## Changelog
 
 <a name="unreleased"></a>
-<a name="[unreleased]"></a>
-
-### 2.1\. [Unreleased]
+### [Unreleased]
 
 > Docs
+- remove toc in favor of GitHub's builtint
 - update template mapping
 - update template mapping
 - update readme.md
 
 
 <a name="v0.1.1"></a>
-<a name="[v0.1.1]-2022-03-13"></a>
-
-### 2.2\. [v0.1.1] - 2022-03-13
+### [v0.1.1] - 2022-03-13
 
 > Bug Fixes
 - **light-novel-translation:** fix potential panic on wrong Done() counter
@@ -66,9 +51,7 @@ This program is intended for my personal use. The developer may receive issue no
 
 
 <a name="v0.1.0"></a>
-<a name="v0.1.0-2022-03-10"></a>
-
-### 2.3\. v0.1.0 - 2022-03-10
+### v0.1.0 - 2022-03-10
 
 > Bug Fixes
 - **light-novel-translation:** better error message for status code

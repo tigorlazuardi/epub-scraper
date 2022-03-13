@@ -2,6 +2,7 @@
 ### [Unreleased]
 
 > Docs
+- remove toc in favor of GitHub's builtint
 - update template mapping
 - update template mapping
 - update readme.md
