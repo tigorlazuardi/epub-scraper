@@ -23,6 +23,7 @@ This program is intended for my personal use. The developer may receive issue no
 > [Unreleased]
 
 > Chore
+- go mod tidy
 - simplified logging package
 - better error message grammar
 

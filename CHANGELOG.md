@@ -2,6 +2,7 @@
 > [Unreleased]
 
 > Chore
+- go mod tidy
 - simplified logging package
 - better error message grammar
 
