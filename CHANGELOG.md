@@ -13,6 +13,7 @@
 - **toc:** removed ugly line dividers
 
 > Feat
+- **config:** added config api
 - **lefthook:** fix markdown-pp not running
 - **light-novel-translation:** implemented scraper
 - **prepare.sh:** added prepare.sh
