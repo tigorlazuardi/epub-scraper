@@ -16,8 +16,30 @@ type DomainConfiguration struct {
 	ContentSelector string `yaml:"content_selector"`
 	TitleSelector   string `yaml:"title_selector"`
 	NextSelector    string `yaml:"next_selector"`
-	StartIndex      int    `yaml:"start_index"`
-	EndIndexReducer int    `yaml:"end_index_reducer"`
+	// Always starts from 1 unless on edit operation
+	StartIndex      int `yaml:"start_index"`
+	EndIndexReducer int `yaml:"end_index_reducer"`
+}
+
+func (cfg *DomainConfiguration) UpdateFromOther(other *DomainConfiguration) {
+	if other.ContentSelector != "" {
+		cfg.ContentSelector = other.ContentSelector
+	}
+	if other.TitleSelector != "" {
+		cfg.TitleSelector = other.TitleSelector
+	}
+
+	if other.NextSelector != "" {
+		cfg.NextSelector = other.NextSelector
+	}
+
+	if other.StartIndex != 0 {
+		cfg.StartIndex = other.StartIndex
+	}
+
+	if other.EndIndexReducer != 0 {
+		cfg.EndIndexReducer = other.EndIndexReducer
+	}
 }
 
 type Domains map[string]DomainConfiguration
@@ -42,7 +64,7 @@ func (c Config) GetDomainConfig(uri string) (cfg *DomainConfiguration, err error
 	x, ok := c.Domain[host]
 	if !ok {
 		msg, err := logger.NewError("website does not exist in configuration")
-		return nil, NewConfigError(msg, err, logger.M{"hostname": u.Hostname()})
+		return nil, NewConfigError(msg, err, logger.M{"web_domain": u.Hostname(), "url": uri})
 	}
 	return &x, nil
 }
