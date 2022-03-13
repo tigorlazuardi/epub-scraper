@@ -23,12 +23,16 @@ This program is intended for my personal use. The developer may receive issue no
 > [Unreleased]
 
 > Docs
+- update template mapping
 - update readme.md
 
 
 <a name="v0.1.1"></a>
 > [v0.1.1] - 2022-03-13
-> Chore
+> Bug Fixes
+- **light-novel-translation:** fix potential panic on wrong Done() counter
+
+> Cleanup
 - go mod tidy
 - simplified logging package
 - better error message grammar
@@ -40,7 +44,7 @@ This program is intended for my personal use. The developer may receive issue no
 - **readme:** various readme update
 - **toc:** removed ugly line dividers
 
-> Feat
+> Features
 - **config:** added config api
 - **lefthook:** fix markdown-pp not running
 - **light-novel-translation:** implemented scraper
@@ -51,23 +55,20 @@ This program is intended for my personal use. The developer may receive issue no
 - **scraper:** added generic scraper
 - **scraper-error:** implement display
 
-> Fix
-- **light-novel-translation:** fix potential panic on wrong Done() counter
-
 
 <a name="v0.1.0"></a>
 > v0.1.0 - 2022-03-10
-> Feat
+> Bug Fixes
+- **light-novel-translation:** better error message for status code
+- **scraper:** fix stack overflow on ScrapeError struct
+
+> Features
 - **init:** skeleton mappings
 - **scraper:** wip for light novel translation
 - **scraper:** added marshal json to scrape error
 - **scraper:** skeleton update
 - **skeleton:** update skeleton
 - **unsafe:** added unsafe utilities
-
-> Fix
-- **light-novel-translation:** better error message for status code
-- **scraper:** fix stack overflow on ScrapeError struct
 
 
 [Unreleased]: https://github.com/tigorlazuardi/epub-scraper/compare/v0.1.1...HEAD
