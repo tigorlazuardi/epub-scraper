@@ -13,6 +13,9 @@ This program is intended for my personal use. The developer may receive issue no
 <a name="unreleased"></a>
 ### [Unreleased]
 
+> Bug Fixes
+- **logger:** fix overriden builtin types
+
 > Code Refactoring
 - **config:** dry Write function
 

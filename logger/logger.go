@@ -13,49 +13,49 @@ type Display interface {
 }
 
 var (
-	info  = log.New("level", "info")
-	warn  = log.New("level", "warn")
-	error = log.New("level", "error")
-	debug = log.New("level", "debug")
+	infoLogger  = log.New("level", "info")
+	warnLogger  = log.New("level", "warn")
+	errorLogger = log.New("level", "error")
+	debugLogger = log.New("level", "debug")
 )
 
 func Info(msg string, ctx ...interface{}) {
 	ctx = toDisplay(ctx)
-	info.Info(msg, ctx)
+	infoLogger.Info(msg, ctx)
 }
 
 func Warn(msg string, ctx ...interface{}) {
 	ctx = toDisplay(ctx)
-	warn.Warn(msg, ctx)
+	warnLogger.Warn(msg, ctx)
 }
 
 func Error(msg string, ctx ...interface{}) {
 	ctx = toDisplay(ctx)
-	error.Error(msg, ctx)
+	errorLogger.Error(msg, ctx)
 }
 
 func Debug(msg string, ctx ...interface{}) {
 	ctx = toDisplay(ctx)
-	debug.Debug(msg, ctx)
+	debugLogger.Debug(msg, ctx)
 }
 
 func UpdateLogger(level int, writer io.Writer, fmt log.Format) {
-	info.SetHandler(log.DiscardHandler())
-	error.SetHandler(log.DiscardHandler())
-	warn.SetHandler(log.DiscardHandler())
-	debug.SetHandler(log.DiscardHandler())
+	infoLogger.SetHandler(log.DiscardHandler())
+	errorLogger.SetHandler(log.DiscardHandler())
+	warnLogger.SetHandler(log.DiscardHandler())
+	debugLogger.SetHandler(log.DiscardHandler())
 	switch {
 	case level > 0:
-		error.SetHandler(log.StreamHandler(writer, fmt))
+		errorLogger.SetHandler(log.StreamHandler(writer, fmt))
 		fallthrough
 	case level > 1:
-		warn.SetHandler(log.StreamHandler(writer, fmt))
+		warnLogger.SetHandler(log.StreamHandler(writer, fmt))
 		fallthrough
 	case level > 2:
-		info.SetHandler(log.StreamHandler(writer, fmt))
+		infoLogger.SetHandler(log.StreamHandler(writer, fmt))
 		fallthrough
 	case level > 3:
-		debug.SetHandler(log.StreamHandler(writer, fmt))
+		debugLogger.SetHandler(log.StreamHandler(writer, fmt))
 	}
 }
 
