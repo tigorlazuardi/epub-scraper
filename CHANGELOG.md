@@ -16,6 +16,7 @@
 - **config:** added config api
 - **lefthook:** fix markdown-pp not running
 - **light-novel-translation:** implemented scraper
+- **logger:** update logger
 - **prepare.sh:** added prepare.sh
 - **scraper:** update logger infor
 - **scraper:** added generic scraper generator

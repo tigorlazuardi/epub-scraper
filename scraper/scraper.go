@@ -5,7 +5,7 @@ import (
 	"encoding/json"
 	"net/http"
 
-	"github.com/tigorlazuardi/epub-scraper/pkg"
+	"github.com/tigorlazuardi/epub-scraper/logger"
 	"github.com/tigorlazuardi/epub-scraper/unsafeutils"
 	"golang.org/x/net/html"
 )
@@ -14,7 +14,7 @@ type Doer interface {
 	Do(*http.Request) (*http.Response, error)
 }
 
-var _ pkg.Display = (*ScrapeError)(nil)
+var _ logger.Display = (*ScrapeError)(nil)
 
 type ScrapeError struct {
 	Err     error
@@ -47,10 +47,10 @@ func (err ScrapeError) Error() string {
 	return "[" + err.Scraper + "] " + err.Message + ": " + err.Err.Error()
 }
 
-func (scrape ScrapeError) Display() []byte {
-	const indent = "    "
-	errBytes, err := json.MarshalIndent(scrape.Err, "", indent)
-	if err != nil {
+func (scrape ScrapeError) Display() json.RawMessage {
+	// const indent = "    "
+	errBytes, err := json.Marshal(scrape.Err)
+	if err != nil || unsafeutils.GetString(errBytes) == "{}" {
 		errBytes = unsafeutils.GetBytes(scrape.Error())
 	}
 	v := make(map[string]interface{}, 4)
@@ -61,14 +61,14 @@ func (scrape ScrapeError) Display() []byte {
 
 	logCtx := make(map[string]interface{}, len(scrape.Context))
 	for key, val := range scrape.Context {
-		if display, ok := val.(pkg.Display); ok {
-			logCtx[key] = json.RawMessage(display.Display())
+		if display, ok := val.(logger.Display); ok {
+			logCtx[key] = display.Display()
 		} else {
 			logCtx[key] = val
 		}
 	}
 
-	b, _ := json.MarshalIndent(v, "", indent)
+	b, _ := json.Marshal(v)
 	return b
 }
 

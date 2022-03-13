@@ -1,11 +1,16 @@
 package logger
 
 import (
+	"encoding/json"
 	"io"
 	"os"
 
 	log "github.com/inconshreveable/log15"
 )
+
+type Display interface {
+	Display() json.RawMessage
+}
 
 var (
 	info  = log.New("level", "info")
@@ -14,12 +19,25 @@ var (
 	debug = log.New("level", "debug")
 )
 
-var (
-	Info  = info.Info
-	Warn  = warn.Warn
-	Error = error.Error
-	Debug = debug.Debug
-)
+func Info(msg string, ctx ...interface{}) {
+	ctx = toDisplay(ctx)
+	info.Info(msg, ctx)
+}
+
+func Warn(msg string, ctx ...interface{}) {
+	ctx = toDisplay(ctx)
+	warn.Warn(msg, ctx)
+}
+
+func Error(msg string, ctx ...interface{}) {
+	ctx = toDisplay(ctx)
+	error.Error(msg, ctx)
+}
+
+func Debug(msg string, ctx ...interface{}) {
+	ctx = toDisplay(ctx)
+	debug.Debug(msg, ctx)
+}
 
 func UpdateLogger(level int, writer io.Writer, fmt log.Format) {
 	info.SetHandler(log.DiscardHandler())
@@ -43,4 +61,13 @@ func UpdateLogger(level int, writer io.Writer, fmt log.Format) {
 
 func init() {
 	UpdateLogger(1, os.Stdout, log.JsonFormat())
+}
+
+func toDisplay(ctx ...interface{}) []interface{} {
+	for i := range ctx {
+		if display, ok := ctx[i].(Display); ok {
+			ctx[i] = display.Display()
+		}
+	}
+	return ctx
 }
