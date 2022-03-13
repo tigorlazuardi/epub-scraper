@@ -13,6 +13,9 @@ This program is intended for my personal use. The developer may receive issue no
 <a name="unreleased"></a>
 ### [Unreleased]
 
+> Code Refactoring
+- **config:** dry Write function
+
 > Docs
 - remove toc in favor of GitHub's builtint
 - update template mapping

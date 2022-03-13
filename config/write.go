@@ -11,21 +11,17 @@ import (
 
 func Write(cfg *Config, path string) error {
 	_, err := os.Stat(path)
+	var file *os.File
 	if errors.Is(err, fs.ErrNotExist) {
-		file, err := os.Create(path)
-		if err != nil {
-			return err
-		}
-		defer file.Close()
-		return newEncoder(file).Encode(cfg)
+		file, err = os.Create(path)
 	} else {
-		file, err := os.Open(path)
-		if err != nil {
-			return err
-		}
-		defer file.Close()
-		return newEncoder(file).Encode(cfg)
+		file, err = os.Open(path)
 	}
+	if err != nil {
+		return err
+	}
+	defer file.Close()
+	return newEncoder(file).Encode(cfg)
 }
 
 func newEncoder(w io.Writer) *yaml.Encoder {

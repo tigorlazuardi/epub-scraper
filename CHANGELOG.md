@@ -1,6 +1,9 @@
 <a name="unreleased"></a>
 ### [Unreleased]
 
+> Code Refactoring
+- **config:** dry Write function
+
 > Docs
 - remove toc in favor of GitHub's builtint
 - update template mapping
