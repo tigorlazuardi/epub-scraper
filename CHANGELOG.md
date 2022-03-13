@@ -1,6 +1,12 @@
 <a name="unreleased"></a>
 > [Unreleased]
 
+> Docs
+- update readme.md
+
+
+<a name="v0.1.1"></a>
+> [v0.1.1] - 2022-03-13
 > Chore
 - go mod tidy
 - simplified logging package
@@ -43,4 +49,5 @@
 - **scraper:** fix stack overflow on ScrapeError struct
 
 
-[Unreleased]: https://github.com/tigorlazuardi/epub-scraper/compare/v0.1.0...HEAD
+[Unreleased]: https://github.com/tigorlazuardi/epub-scraper/compare/v0.1.1...HEAD
+[v0.1.1]: https://github.com/tigorlazuardi/epub-scraper/compare/v0.1.0...v0.1.1
