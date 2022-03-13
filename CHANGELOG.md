@@ -14,6 +14,7 @@
 - update readme.md
 
 > Features
+- **config:** add GetConfigDomain helper
 - **config:** added error wrapper for better information
 
 
