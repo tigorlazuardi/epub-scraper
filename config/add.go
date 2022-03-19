@@ -16,8 +16,6 @@ func (c *Config) AddConfig(uri string, cfg *DomainConfiguration) (err error) {
 
 	host := u.Hostname()
 
-	_ = host
-
 	c.Domain[host] = cfg
 
 	err = Write(c, GetFileName())

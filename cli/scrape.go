@@ -13,6 +13,19 @@ var scrapeCmd = &cobra.Command{
 		if len(args) == 0 {
 			return errors.New("0 arguments given for scrape command. Refer lnt-scraper scrape --help for example.")
 		}
+
+		// conf, err := config.EnsureRead()
+		// if err != nil {
+		// 	return err
+		// }
+
+		// for _, v := range args {
+		// 	cfg, err := conf.GetDomainConfig(v)
+		// 	if err != nil {
+		//
+		// 	}
+		// }
+
 		return nil
 	},
 	Example: "epub-scraper scrape https://domain.name.com/rest/of/the/path",
@@ -21,3 +34,7 @@ var scrapeCmd = &cobra.Command{
 func init() {
 	cliCMD.AddCommand(scrapeCmd)
 }
+
+// func scrape() {
+//
+// }
